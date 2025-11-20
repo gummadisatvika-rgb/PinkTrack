@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3000;
 const path = require('path');
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use(cors());
@@ -45,9 +45,9 @@ app.post("/entry", (req, res) => {
   saveEntries(entries);
   res.status(201).json({ message: "Entry saved" });
 });
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+//app.get('/', (req, res) => {
+  //res.sendFile(path.join(__dirname, 'index.html'));
+//});
 process.on('uncaughtException', (err) => {
   console.error("❌ Uncaught Exception:", err);
 });
