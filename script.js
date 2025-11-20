@@ -170,14 +170,19 @@ function updateCountdown() {
   if (progressCircle) {
     const total = 628;
     const progress = Math.min(1, (cycleLength - daysToPeriod) / cycleLength);
-    progressCircle.style.strokeDashoffset = total - total * progress;
+    periodCircle.style.strokeDashoffset = total - total * fractionalProgress;
+
   }
 
   if (periodLabel && periodCircle) {
     const total = 628;
 
     if (today >= startDate && today <= periodEnd) {
-      const dayNumber = Math.ceil((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+      const msPerDay = 1000 * 60 * 60 * 24;
+      const dayProgress = (today - startDate) / msPerDay;
+      const dayNumber = Math.floor(dayProgress) + 1;
+      const fractionalProgress = dayProgress % 1;
+      
       periodLabel.textContent = `🩸 Day ${dayNumber} of your period\nStart: ${lastEntry.startDate}\nEnd: ${lastEntry.endDate}`;
       periodCircle.style.strokeDashoffset = total * 0.3;
     } else if (today > periodEnd) {
@@ -185,9 +190,9 @@ function updateCountdown() {
       periodCircle.style.strokeDashoffset = total;
     } else {
       const cuteMessages = [
-        "🌸 Your body’s blooming — no period today!",
-        "☁️ Floating free — no cramps in sight.",
-        "🧁 Treat yourself — it’s a no-flow day!",
+        "🌸 Your body’s blooming!!!",
+        "☁️ Floating free!!!",
+        "🧁 Treat yourself!!!",
         "🩷 You’re in your follicular era!"
       ];
       const msg = cuteMessages[Math.floor(Math.random() * cuteMessages.length)];
