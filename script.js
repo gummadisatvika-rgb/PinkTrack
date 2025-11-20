@@ -117,7 +117,6 @@ function deleteEntry(index) {
   updateCountdown();
   displaySavedEntries();
 }
-
 function updateCountdown() {
   const entries = JSON.parse(localStorage.getItem("pinktrackEntries")) || [];
 
@@ -148,12 +147,17 @@ function updateCountdown() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const now = new Date(); // real-time clock
+  const msPerDay = 1000 * 60 * 60 * 24;
+  const dayProgress = (now - startDate) / msPerDay;
+  const fractionalProgress = dayProgress % 1;
+
   const periodEnd = new Date(startDate);
-  periodEnd.setDate(periodEnd.getDate() + periodLength - 1);
+  periodEnd.setDate(startDate.getDate() + periodLength - 1);
   periodEnd.setHours(0, 0, 0, 0);
 
-  const daysToPeriod = Math.max(0, Math.ceil((nextPeriod - today) / (1000 * 60 * 60 * 24)));
-  const daysToOvulation = Math.max(0, Math.ceil((ovulationDate - today) / (1000 * 60 * 60 * 24)));
+  const daysToPeriod = Math.max(0, Math.ceil((nextPeriod - today) / msPerDay));
+  const daysToOvulation = Math.max(0, Math.ceil((ovulationDate - today) / msPerDay));
 
   if (label) {
     if (today >= startDate && today <= periodEnd) {
@@ -163,28 +167,23 @@ function updateCountdown() {
     } else if (today.toDateString() === ovulationDate.toDateString()) {
       label.textContent = "🌸 Ovulation day!";
     } else {
-      label.textContent = `Next Period in: ${daysToPeriod} days\nOvulation in: ${daysToOvulation} days`;
+      label.textContent = `Next period in: ${daysToPeriod} days\nOvulation in: ${daysToOvulation} days`;
     }
   }
 
   if (progressCircle) {
     const total = 628;
     const progress = Math.min(1, (cycleLength - daysToPeriod) / cycleLength);
-    periodCircle.style.strokeDashoffset = total - total * fractionalProgress;
-
+    progressCircle.style.strokeDashoffset = total - total * progress;
   }
 
   if (periodLabel && periodCircle) {
     const total = 628;
 
     if (today >= startDate && today <= periodEnd) {
-      const msPerDay = 1000 * 60 * 60 * 24;
-      const dayProgress = (today - startDate) / msPerDay;
       const dayNumber = Math.floor(dayProgress) + 1;
-      const fractionalProgress = dayProgress % 1;
-      
       periodLabel.textContent = `🩸 Day ${dayNumber} of your period\nStart: ${lastEntry.startDate}\nEnd: ${lastEntry.endDate}`;
-      periodCircle.style.strokeDashoffset = total * 0.3;
+      periodCircle.style.strokeDashoffset = total - total * fractionalProgress;
     } else if (today > periodEnd) {
       periodLabel.textContent = `🌸 Your last period ended on ${lastEntry.endDate}.\nYou can log a new cycle.`;
       periodCircle.style.strokeDashoffset = total;
