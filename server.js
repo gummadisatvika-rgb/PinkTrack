@@ -38,6 +38,6 @@ app.post("/entry", (req, res) => {
   res.status(201).json({ message: "Entry saved" });
 });
 
-app.listen(PORT, () => {
+app.listen(3000, '0.0.0.0', () => {
   console.log(`🎀 PinkTrack backend running on http://localhost:${PORT}`);
 });
