@@ -117,6 +117,7 @@ function deleteEntry(index) {
   updateCountdown();
   displaySavedEntries();
 }
+
 function updateCountdown() {
   const entries = JSON.parse(localStorage.getItem("pinktrackEntries")) || [];
 
