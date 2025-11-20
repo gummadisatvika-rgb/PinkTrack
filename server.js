@@ -1,3 +1,4 @@
+console.log("✅ PinkTrack server.js is starting...");
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
@@ -27,6 +28,9 @@ app.get("/entries", (req, res) => {
   const entries = loadEntries();
   res.json(entries);
 });
+app.get('/test', (req, res) => {
+  res.send('✅ Express is responding!');
+});
 
 app.post("/entry", (req, res) => {
   const newEntry = req.body;
@@ -41,7 +45,17 @@ app.post("/entry", (req, res) => {
   saveEntries(entries);
   res.status(201).json({ message: "Entry saved" });
 });
-
-app.listen(3000, '0.0.0.0', () => {
-  console.log(`🎀 PinkTrack backend running on http://localhost:${PORT}`);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
+process.on('uncaughtException', (err) => {
+  console.error("❌ Uncaught Exception:", err);
+});
+console.log("📡 About to start listening...");
+try {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🎀 PinkTrack backend running on http://localhost:${PORT}`);
+  });
+} catch (err) {
+  console.error("❌ Server failed to start:", err);
+}
