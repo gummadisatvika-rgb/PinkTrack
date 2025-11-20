@@ -163,7 +163,7 @@ function updateCountdown() {
     } else if (today.toDateString() === ovulationDate.toDateString()) {
       label.textContent = "🌸 Ovulation day!";
     } else {
-      label.textContent = `Period in: ${daysToPeriod} days\nOvulation in: ${daysToOvulation} days`;
+      label.textContent = `Next Period in: ${daysToPeriod} days\nOvulation in: ${daysToOvulation} days`;
     }
   }
 
