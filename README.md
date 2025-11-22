@@ -1,5 +1,6 @@
-Here’s a clean, professional README.md for your PinkTrack project without emojis:
-# PinkTrack
+# PinkTrack: Privacy first period tracker
+
+Name: Satvika Gummadi, Student ID:35896357
 
 PinkTrack is a privacy-first period tracker designed to empower users with a beautiful, welcoming interface and professional features. Built with Node.js, HTML, CSS, and JavaScript, it combines soft aesthetics with robust functionality to set a new standard for ethical health apps.
 
