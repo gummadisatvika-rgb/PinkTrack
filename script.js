@@ -84,7 +84,7 @@ function displaySavedEntries() {
     list.appendChild(li);
   });
 
-  const latest = entries[entries.length - 1];
+  const latest = entries[0];
   const start = new Date(latest.startDate);
   const days = latest.periodLength;
   let html = `<h3>📆 Your Period Days</h3><ul>`;
@@ -134,7 +134,8 @@ function updateCountdown() {
     return;
   }
 
-  const lastEntry = entries[entries.length - 1];
+  const lastEntry = entries[0];
+
   const startDate = new Date(lastEntry.startDate);
   const cycleLength = lastEntry.cycleLength;
   const periodLength = lastEntry.periodLength;
@@ -151,7 +152,7 @@ function updateCountdown() {
   const now = new Date(); // real-time clock
   const msPerDay = 1000 * 60 * 60 * 24;
   const dayProgress = (now - startDate) / msPerDay;
-  const fractionalProgress = dayProgress % 1;
+  const fractionalProgress = dayProgress / cycleLength;
 
   const periodEnd = new Date(startDate);
   periodEnd.setDate(startDate.getDate() + periodLength - 1);
@@ -202,7 +203,20 @@ function updateCountdown() {
   }
 }
 
+function scheduleMidnightRefresh() {
+  const now = new Date();
+  const millisTillMidnight =
+    new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5) - now;
+
+  setTimeout(() => {
+    updateCountdown();
+    displaySavedEntries();
+    scheduleMidnightRefresh(); 
+  }, millisTillMidnight);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   updateCountdown();
   displaySavedEntries();
+  scheduleMidnightRefresh(); 
 });
