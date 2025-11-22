@@ -1,26 +1,22 @@
+Here’s a clean, professional README.md for your PinkTrack project without emojis:
 # PinkTrack
-My awesome  website!
- 
 
-PinkTrack is a privacy-first menstrual cycle tracker designed with a soft pastel aesthetic and empowering features. Built using HTML, CSS, and JavaScript, it helps users log their period, track symptoms, and visualize their cycle with countdowns and calendar views.
+PinkTrack is a privacy-first period tracker designed to empower users with a beautiful, welcoming interface and professional features. Built with Node.js, HTML, CSS, and JavaScript, it combines soft aesthetics with robust functionality to set a new standard for ethical health apps.
 
+---
 
+## Features
+- Cycle Tracking: Log and visualize menstrual cycles with interactive calendar views.
+- UI Design: Soft pastel colors, bows, ribbons, and gradients for a welcoming aesthetic.
+- Symptom Logging: Track mood, symptoms, and notes for each cycle.
+- History & Insights: Review past cycles and patterns.
+- Privacy First: No third-party tracking — user autonomy is respected.
+- Cloud Deployment: Hosted on AWS EC2 with GoDaddy domain integration.
 
- Features
+---
 
-1.Period start/end tracking
-2.Symptom and mood logging
-3.Calendar view of cycle days
-4.Countdown to next period and ovulation
-5.Editable notes per entry
-6.Reminder toggle
-7.Rotating health tips
-  
-  
-  
-  
-Tech Stack:
-1.Frontend-HTML, CSS, JavaScript
-2.Backend-Node.js + Express (free and lightweight)
-3.Storage- JSON file (local for now)
-4.Deployment-AWS EC2 (Ubuntu + NGINX)
+## Tech Stack
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js (Express)
+- Deployment: AWS EC2, PM2 process manager
+- Version Control: GitHub
