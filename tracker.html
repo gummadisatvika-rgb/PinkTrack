@@ -99,14 +99,12 @@
 
     <button type="submit">Save Entry</button>
   </form>
+  <div id="popup" style="display:none;">
+  <span id="popup-message"></span><br>
+  <button onclick="closePopup()">Close</button>
+</div>
 
   <script src="script.js"></script>
-  <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    updateCountdown();
-    displaySavedEntries();
-  });
-</script>
 
 </body>
 </html>
