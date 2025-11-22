@@ -3,7 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const app = express();
-const PORT = 80;
+const PORT = 5000;
 const path = require('path');
 
 app.use(express.static(__dirname));
