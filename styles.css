@@ -3,23 +3,27 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom right, #fffafa, #ffc0cb);
+  background: linear-gradient(to bottom right, #ffe6f0, #fff0f5); /* pastel gradient */
   text-align: center;
   padding: 40px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
-  background: linear-gradient(to right, #ffb6c1, #ff69b4);
+  background: linear-gradient(to right, #ffb6c1, #ff69b4); /* ribbon gradient */
   padding: 20px;
-  border-bottom: 2px dashed #d63384;
-  position: relative;
+  border-bottom: 2px dashed #d63384; /* ribbon effect */
+  text-align: center; /* center PinkTrack name */
+  margin-top: 2rem;
 }
 
-h1 {
+header h1 {
   color: #d63384;
-  font-size: 2.5em;
-  margin: 0;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
 }
 
 nav a {
@@ -49,7 +53,6 @@ footer {
   color: #888;
 }
 
-/* 🎀 Bow decorations */
 body::before, body::after {
   content: "🎀";
   position: absolute;
@@ -90,18 +93,18 @@ input, textarea {
   margin-top: 4px;
   font-family: 'Poppins', sans-serif;
 }
-.popup-box {
+#popup-box {
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
-.popup-box.show {
+#popup-box.show {
   opacity: 1;
   pointer-events: auto;
 }
 
-.popup-box {
+#popup-box {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -131,4 +134,12 @@ input, textarea {
   font-weight: bold;
   color: #d63384;
   text-align: center;
+}
+
+.tracker-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
 }
